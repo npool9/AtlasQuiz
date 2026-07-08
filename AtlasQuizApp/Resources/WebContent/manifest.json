@@ -1,0 +1,16 @@
+{
+  "name": "Atlas Quiz — Country Geography",
+  "short_name": "Atlas Quiz",
+  "description": "Learn country names and locations on interactive world and continent maps.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#16233B",
+  "theme_color": "#16233B",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

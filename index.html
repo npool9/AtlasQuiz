@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>Atlas Quiz — Country Geography</title>
+<meta name="description" content="Learn country names and locations on interactive world and continent maps." />
+
+<!-- Theme / PWA -->
+<meta name="theme-color" content="#16233B" />
+<link rel="manifest" href="./manifest.json" />
+
+<!-- iOS home-screen app behavior -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Atlas Quiz" />
+<link rel="apple-touch-icon" href="./icons/icon-180.png" />
+
+<!-- Icons -->
+<link rel="icon" type="image/png" sizes="32x32" href="./icons/icon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="./icons/icon-16.png" />
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #16233B;
+    overscroll-behavior-y: none;
+    -webkit-text-size-adjust: 100%;
+  }
+  #root {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  /* Simple splash shown until React mounts */
+  #boot {
+    position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(ellipse at top, #1c2c4a 0%, #16233B 60%);
+    color: #C9A227; font-family: Georgia, serif; font-size: 15px; letter-spacing: 0.5px;
+    z-index: 9999;
+  }
+</style>
+</head>
+<body>
+  <div id="boot">Unrolling the map…</div>
+  <div id="root"></div>
+
+  <script src="./app.bundle.js"></script>
+  <script>
+    // Remove the boot splash once React has painted the app.
+    window.addEventListener("DOMContentLoaded", function () {
+      var tries = 0;
+      var iv = setInterval(function () {
+        var root = document.getElementById("root");
+        var boot = document.getElementById("boot");
+        tries++;
+        if ((root && root.firstChild) || tries > 100) {
+          if (boot) boot.remove();
+          clearInterval(iv);
+        }
+      }, 50);
+    });
+
+    // Register the service worker for offline use. Safe to skip if the
+    // page isn't served over https/localhost (e.g. plain LAN testing).
+    if ("serviceWorker" in navigator && window.isSecureContext) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./sw.js").catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>

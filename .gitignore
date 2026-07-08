@@ -1,0 +1,23 @@
+# Xcode
+AtlasQuizApp/build/
+AtlasQuizApp/*.xcodeproj/xcuserdata/
+AtlasQuizApp/*.xcodeproj/project.xcworkspace/xcuserdata/
+AtlasQuizApp/*.xcworkspace/xcuserdata/
+DerivedData/
+*.xcresult
+
+# macOS
+.DS_Store
+.AppleDouble
+
+# Node (web build artifacts — keep compiled bundle, ignore source deps)
+node_modules/
+npm-debug.log*
+
+# Env / secrets
+.env
+*.p8
+*.p12
+*.mobileprovision
+AuthKey_*.p8
+ExportOptions.plist
