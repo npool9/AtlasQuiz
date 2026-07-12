@@ -8,14 +8,20 @@ on:
 
 jobs:
   build:
-    name: Build (iOS Simulator)
+    name: Build (iOS)
     runs-on: macos-15
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_16.2.app || sudo xcode-select -s /Applications/Xcode.app
+      - name: Select latest Xcode
+        run: |
+          # Use the newest Xcode available on the runner
+          XCODE=$(ls /Applications | grep 'Xcode_' | sort -V | tail -1)
+          if [ -n "$XCODE" ]; then
+            sudo xcode-select -s "/Applications/$XCODE/Contents/Developer"
+          fi
+          xcodebuild -version
 
       - name: Build
         run: |
@@ -23,7 +29,7 @@ jobs:
             -project AtlasQuizApp/AtlasQuiz.xcodeproj \
             -scheme AtlasQuiz \
             -configuration Debug \
-            -destination 'generic/platform=iOS Simulator' \
+            -destination 'generic/platform=iOS' \
             build \
             CODE_SIGNING_ALLOWED=NO \
             ASSETCATALOG_COMPILER_SKIP_APP_STORE_DEPLOYMENT=YES \
