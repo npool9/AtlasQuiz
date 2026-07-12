@@ -1,0 +1,23 @@
+{
+  "name": "atlas-quiz",
+  "version": "1.0.0",
+  "description": "Interactive world/continent map quiz that teaches country names and locations.",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "node scripts/dev-server.js",
+    "build-data": "node data/build-data.js"
+  },
+  "dependencies": {
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "d3": "^7.9.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.1",
+    "world-atlas": "^2.0.2",
+    "world-countries": "^5.1.0",
+    "topojson-client": "^3.1.0",
+    "topojson-simplify": "^3.0.3"
+  }
+}
